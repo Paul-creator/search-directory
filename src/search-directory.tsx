@@ -17,7 +17,17 @@ export default function Command() {
     procRef.current?.kill();
     if (!searchText) return setResults([]);
     setResults([]);
-    const proc = spawn("mdfind", ["-onlyin", searchDir, searchText]);
+    // Pfad zu deinem Homebrew-fzf (ggf. anpassen) und Shell-Quoting
+    const cmd = `
+       export fzf="/opt/homebrew/bin/fzf";
+       find '${searchDir}' -type f -o -type d \
+         | fzf --filter='${searchText}' --no-sort
+     `;
+    const proc = spawn("bash", ["-lc", cmd], {
+      env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH}` },
+    });
+    console.log(cmd);
+
     procRef.current = proc;
     proc.stdout.on("data", (chunk: Buffer) => {
       setResults((prev) => [...prev, ...chunk.toString().split("\n").filter(Boolean)]);
