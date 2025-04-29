@@ -44,6 +44,7 @@ export default function Command() {
           key={path}
           title={path.split("/").pop()!}
           subtitle={path}
+          icon={{ fileIcon: path }}
           actions={
             <ActionPanel>
               <Action.Open title="Open File" target={path} />
