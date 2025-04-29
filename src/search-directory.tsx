@@ -38,10 +38,8 @@ export default function Command() {
 
   useEffect(() => {
     procRef.current?.kill();
-    if (!searchText) {
-      setResults([]);
-      return;
-    }
+
+    // Always run search, even when searchText is empty
     setResults([]);
 
     const cmd = `
