@@ -29,12 +29,76 @@
   ],
   "preferences": [
     {
-      "name": "searchDir",
       "type": "directory",
-      "title": "Search Directory",
+      "name": "searchDir1",
+      "title": "Search Directory #1",
       "description": "Choose the root folder to search in",
-      "placeholder": "~/",
+      "default": "~/Documents",
       "required": true
+    },
+    {
+      "type": "directory",
+      "name": "searchDir2",
+      "title": "Search Directory #2",
+      "description": "Choose the root folder to search in",
+      "default": "~/Downloads",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir3",
+      "title": "Search Directory #3",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir4",
+      "title": "Search Directory #4",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir5",
+      "title": "Search Directory #5",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir6",
+      "title": "Search Directory #6",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir7",
+      "title": "Search Directory #7",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir8",
+      "title": "Search Directory #8",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir9",
+      "title": "Search Directory #9",
+      "description": "Choose the root folder to search in",
+      "required": false
+    },
+    {
+      "type": "directory",
+      "name": "searchDir10",
+      "title": "Search Directory #10",
+      "description": "Choose the root folder to search in",
+      "required": false
     }
   ],
   "dependencies": {
