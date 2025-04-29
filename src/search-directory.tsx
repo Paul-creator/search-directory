@@ -1,30 +1,38 @@
 // src/search-directory.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { List, ActionPanel, Action, getPreferenceValues } from "@raycast/api";
-import { exec } from "child_process";
+import { spawn, ChildProcessWithoutNullStreams } from "child_process";
 
 interface Preferences {
   searchDir: string;
 }
 
-export default function Command({ arguments: { query } }: { arguments: { query: string } }) {
+export default function Command() {
   const { searchDir } = getPreferenceValues<Preferences>();
+  const [searchText, setSearchText] = useState("");
   const [results, setResults] = useState<string[]>([]);
+  const procRef = useRef<ChildProcessWithoutNullStreams>();
 
   useEffect(() => {
-    if (!query) return setResults([]);
-    exec(`mdfind -onlyin "${searchDir}" "${query}"`, (err, stdout) => {
-      if (err) return setResults([]);
-      setResults(stdout.split("\n").filter(Boolean));
+    procRef.current?.kill();
+    if (!searchText) return setResults([]);
+    setResults([]);
+    const proc = spawn("mdfind", ["-onlyin", searchDir, searchText]);
+    procRef.current = proc;
+    proc.stdout.on("data", (chunk: Buffer) => {
+      setResults((prev) => [...prev, ...chunk.toString().split("\n").filter(Boolean)]);
     });
-  }, [query, searchDir]);
+    return () => {
+      proc.kill();
+    };
+  }, [searchText, searchDir]);
 
   return (
-    <List searchBarPlaceholder="Type to search…" throttle>
+    <List searchBarPlaceholder="Type to search…" onSearchTextChange={setSearchText} throttle>
       {results.map((path) => (
         <List.Item
           key={path}
-          title={path.split("/").pop() || path}
+          title={path.split("/").pop()!}
           subtitle={path}
           actions={
             <ActionPanel>
