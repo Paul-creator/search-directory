@@ -7,11 +7,7 @@ interface Preferences {
   searchDir: string;
 }
 
-export default function Command({
-  arguments: { query },
-}: {
-  arguments: { query: string };
-}) {
+export default function Command({ arguments: { query } }: { arguments: { query: string } }) {
   const { searchDir } = getPreferenceValues<Preferences>();
   const [results, setResults] = useState<string[]>([]);
 

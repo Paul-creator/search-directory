@@ -6,6 +6,11 @@
   "icon": "extension-icon.png",
   "author": "Paul-creator",
   "license": "MIT",
+  "schemaVersion": 1,
+  "main": "src/search-directory.tsx",
+  "categories": [
+    "Productivity"
+  ],
   "commands": [
     {
       "name": "search-directory",
@@ -25,9 +30,11 @@
   "preferences": [
     {
       "name": "searchDir",
-      "type": "text",
+      "type": "directory",
       "title": "Search Directory",
-      "placeholder": "/Users/you/path/to/dir"
+      "description": "Choose the root folder to search in",
+      "placeholder": "~/",
+      "required": true
     }
   ],
   "dependencies": {
