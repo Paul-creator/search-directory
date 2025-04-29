@@ -21,7 +21,7 @@ export default function Command() {
     const cmd = `
        export fzf="/opt/homebrew/bin/fzf";
        find '${searchDir}' -type f -o -type d \
-         | fzf --filter='${searchText}' --no-sort
+         | fzf --ignore-case --filter='${searchText}'
      `;
     const proc = spawn("bash", ["-lc", cmd], {
       env: { ...process.env, PATH: `/opt/homebrew/bin:${process.env.PATH}` },
