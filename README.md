@@ -2,6 +2,8 @@
 
 This Raycast extension lets you pick from up to 10 predefined folders via a dropdown in the search bar and perform searches inside them using **fzf**, matching both file names and directory names.
 
+![preview.png](./preview.png)
+
 ## Prerequisites
 
 - **macOS** with Raycast installed
