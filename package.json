@@ -18,13 +18,7 @@
       "description": "Indexed search in a user-defined directory",
       "mode": "view",
       "icon": "🔍",
-      "arguments": [
-        {
-          "name": "query",
-          "type": "text",
-          "placeholder": "Search term…"
-        }
-      ]
+      "arguments": []
     }
   ],
   "preferences": [
